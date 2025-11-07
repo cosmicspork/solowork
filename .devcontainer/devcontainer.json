@@ -1,0 +1,27 @@
+{
+  "name": "Solowork",
+  "dockerFile": "./Dockerfile",
+  "forwardPorts": [8000, 5173],
+  "portsAttributes": {
+    "8000": {
+      "label": "Application",
+      "onAutoForward": "notify"
+    },
+    "5173": {
+      "label": "Vite",
+      "onAutoForward": "silent"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "laravel.vscode-laravel",
+        "open-southeners.laravel-pint",
+        "Anthropic.claude-code",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint"
+      ]
+    }
+  },
+  "postCreateCommand": "composer run setup"
+}

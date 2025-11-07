@@ -1,0 +1,90 @@
+FROM alpine:3.22
+
+ARG USERNAME=vscode
+ARG USER_UID=1000
+ARG USER_GID=1000
+
+ENV HOME=/home/${USERNAME}
+
+RUN apk update \
+  && apk add --no-cache \
+    bash \
+    curl \
+    tar \
+    unzip \
+    git \
+    openssh-client \
+    ca-certificates \
+    nodejs \
+    npm \
+    python3 \
+    just \
+    ripgrep \
+    bat \
+    fd \
+    eza \
+    delta \
+    direnv \
+    jq \
+    yq \
+    sd \
+    github-cli \
+    libstdc++ \
+    libgcc \
+    gcompat \
+    xz \
+    tzdata \
+    php84 \
+    php84-cli \
+    php84-fpm \
+    php84-opcache \
+    php84-mbstring \
+    php84-curl \
+    php84-openssl \
+    php84-xml \
+    php84-simplexml \
+    php84-xmlreader \
+    php84-xmlwriter \
+    php84-dom \
+    php84-phar \
+    php84-tokenizer \
+    php84-session \
+    php84-ctype \
+    php84-fileinfo \
+    php84-iconv \
+    php84-zip \
+    php84-intl \
+    php84-bcmath \
+    php84-sodium \
+    php84-posix \
+    php84-pdo \
+    php84-pdo_pgsql \
+    php84-pgsql \
+    php84-pdo_sqlite \
+    php84-sqlite3 \
+    php84-pdo_dblib \
+    php84-pdo_odbc \
+    php84-odbc \
+    php84-gd \
+    php84-exif \
+  && ln -sf /usr/bin/php84 /usr/bin/php \
+  && rm -rf /var/cache/apk/*
+
+RUN addgroup -g ${USER_GID} ${USERNAME} \
+  && adduser -D -h ${HOME} -s /bin/bash -G ${USERNAME} -u ${USER_UID} ${USERNAME} \
+  && mkdir -p ${HOME} \
+  && chown -R ${USERNAME}:${USERNAME} ${HOME}
+
+COPY --from=composer:2 /usr/bin/composer /usr/local/bin/composer
+
+USER ${USERNAME}
+WORKDIR ${HOME}
+
+ENV PATH="${HOME}/.npm-global/bin:${HOME}/.config/composer/vendor/bin:${PATH}"
+
+RUN mkdir -p "${HOME}/.npm-global" \
+  && npm config set prefix "${HOME}/.npm-global"
+
+RUN npm install -g @anthropic-ai/claude-code @openai/codex 
+
+CMD ["/bin/bash"]
