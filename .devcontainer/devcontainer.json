@@ -23,5 +23,5 @@
       ]
     }
   },
-  "postCreateCommand": "composer run setup"
+  "postCreateCommand": "composer run setup-dev"
 }
