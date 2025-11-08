@@ -19,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Load view helpers
+        require_once app_path('View/helpers.php');
     }
 }

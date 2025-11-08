@@ -6,6 +6,118 @@
 @source '../**/*.js';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    /* Monospace font stack for terminal aesthetic */
+    --font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+}
+
+/* Terminal theme utility classes using CSS custom properties */
+@layer utilities {
+    /* Background utilities */
+    .bg-terminal-bg {
+        background-color: var(--color-bg-primary);
+    }
+
+    .bg-terminal-bg-secondary {
+        background-color: var(--color-bg-secondary);
+    }
+
+    .bg-terminal-bg-tertiary {
+        background-color: var(--color-bg-tertiary);
+    }
+
+    .bg-terminal-hover {
+        background-color: var(--color-bg-hover);
+    }
+
+    .bg-terminal-active {
+        background-color: var(--color-bg-active);
+    }
+
+    /* Text color utilities */
+    .text-terminal {
+        color: var(--color-text-primary);
+    }
+
+    .text-terminal-secondary {
+        color: var(--color-text-secondary);
+    }
+
+    .text-terminal-muted {
+        color: var(--color-text-muted);
+    }
+
+    .text-terminal-disabled {
+        color: var(--color-text-disabled);
+    }
+
+    /* Border utilities */
+    .border-terminal-border {
+        border-color: var(--color-border-primary);
+    }
+
+    .border-terminal-border-secondary {
+        border-color: var(--color-border-secondary);
+    }
+
+    .border-terminal-border-muted {
+        border-color: var(--color-border-muted);
+    }
+
+    /* Accent utilities */
+    .text-terminal-accent {
+        color: var(--color-accent-primary);
+    }
+
+    .text-terminal-success {
+        color: var(--color-accent-success);
+    }
+
+    .text-terminal-error {
+        color: var(--color-accent-error);
+    }
+
+    .text-terminal-warning {
+        color: var(--color-accent-warning);
+    }
+
+    .text-terminal-info {
+        color: var(--color-accent-info);
+    }
+
+    /* Link utilities */
+    .text-terminal-link {
+        color: var(--color-link);
+    }
+
+    .text-terminal-link:hover {
+        color: var(--color-link-hover);
+    }
+
+    .text-terminal-link:visited {
+        color: var(--color-link-visited);
+    }
+
+    /* Input utilities */
+    .input-terminal {
+        background-color: var(--color-input-bg);
+        border-color: var(--color-input-border);
+        color: var(--color-input-text);
+    }
+
+    .input-terminal:focus {
+        border-color: var(--color-input-focus);
+        outline: none;
+        box-shadow: 0 0 0 1px var(--color-input-focus);
+    }
+
+    /* Button utilities */
+    .btn-terminal-primary {
+        background-color: var(--color-button-primary-bg);
+        color: var(--color-button-primary-text);
+    }
+
+    .btn-terminal-secondary {
+        background-color: var(--color-button-secondary-bg);
+        color: var(--color-button-secondary-text);
+    }
 }

@@ -15,6 +15,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Terminal Font
+    |--------------------------------------------------------------------------
+    |
+    | The primary monospace font for the terminal aesthetic. This can be
+    | overridden via APP_FONT environment variable.
+    |
+    */
+
+    'font' => env('APP_FONT', 'JetBrains Mono'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Available Themes
     |--------------------------------------------------------------------------
     |
